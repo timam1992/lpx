@@ -23,3 +23,5 @@ echo -e ' \t \t \t' 'proxy_pass http://'"$ip"':'"$port"';' >> nginx.conf
 echo -e ' \t \t' '}' >> nginx.conf
 echo -e ' \t' '}' >> nginx.conf
 echo '}' >> nginx.conf
+
+echo -e "$ip"  '\t'   "$domain" >> /etc/hosts
