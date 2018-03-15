@@ -7,8 +7,8 @@ echo -e '}\n' >> nginx.conf
 
 printf 'Enter your desired local domain : '
 read -r domain
-printf 'Enter your local IP Address : '
-read -r ip
+ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+printf 'Your local IP address is :'$ip'\n'
 printf 'Enter the Port Number : '
 read -r port 
 
