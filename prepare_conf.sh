@@ -24,4 +24,7 @@ echo -e ' \t \t' '}' >> nginx.conf
 echo -e ' \t' '}' >> nginx.conf
 echo '}' >> nginx.conf
 
+#Creating backup of /etc/hosts file
+cat /etc/hosts > hosts.backup
+#updating hosts file 
 echo -e "$ip"  '\t'   "$domain" >> /etc/hosts
