@@ -4,16 +4,6 @@ take_backup(){
     cat /etc/hosts > hosts.backup
 }
 
-greetings(){
-    printf %100s |tr " " "=" 
-    echo $'\n'
-    echo $' Thank you for using Local Nginx Docker Proxy \n ' 
-#   dialog --title "Hello" --msgbox 'Hello world!' 6 20
-    printf %100s |tr " " "=" 
-    echo $'\n'
-}
-
-
 write_nginx_header(){
     echo -e 'events {' >> nginx.conf
     echo -e ' \t ' 'worker_connections  1024;' >> nginx.conf
@@ -42,13 +32,6 @@ write_nginx_instance(){
     echo -e "$ip"  '\t'   "$domain" >> /etc/hosts
 }
 
-thankyou(){
-    echo "Thank You! for using Local Nginx Docker Proxy"
-}
-
-
 take_backup
-greetings
 write_nginx_header
 write_nginx_instance
-thankyou
