@@ -1,4 +1,19 @@
 #!/bin/bash
+greetings(){
+    printf %100s |tr " " "=" 
+    echo $'\n'
+    echo $'Greetings!! Thank You for choosing Local Nginx Docker Proxy.'
+    echo $' \n '
+}
+
+thankyou(){
+    echo $'\n'
+    echo $'Thank You for using Local Nginx Docker Proxy.'
+    echo $' \n '
+    printf %100s |tr " " "=" 
+    echo $'\n'
+}
+
 take_backup(){
     #Creating backup of /etc/hosts file
     cat /etc/hosts > hosts.backup
@@ -32,6 +47,35 @@ write_nginx_instance(){
     echo -e "$ip"  '\t'   "$domain" >> /etc/hosts
 }
 
-take_backup
-write_nginx_header
-write_nginx_instance
+is_frist_time=0
+
+while true
+do 
+    if [ $is_frist_time == 0 ]; then
+        
+        greetings
+        write_nginx_header
+        write_nginx_instance
+
+        is_frist_time=$((is_frist_time + 1))
+        printf "Do you want to add another local proxy? [y/n] : "
+        read -r input
+        if [ "$input" == "y" ]; then
+            continue
+        else
+            thankyou
+            break
+        fi
+
+    else
+        write_nginx_instance 
+        printf "Do you want to add another local proxy? [y/n] : "
+        read -r input
+        if [ "$input" == "y" ]; then
+            continue
+        else
+            thankyou
+            break
+        fi
+    fi
+done
